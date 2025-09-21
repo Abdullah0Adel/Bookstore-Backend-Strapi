@@ -1,0 +1,88 @@
+{
+  "kind": "collectionType",
+  "collectionName": "books",
+  "info": {
+    "singularName": "book",
+    "pluralName": "books",
+    "displayName": "book",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "book_title": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "publication_date": {
+      "type": "string"
+    },
+    "ASIN": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "publish": {
+      "type": "string"
+    },
+    "pages": {
+      "type": "string"
+    },
+    "book_format": {
+      "type": "string"
+    },
+    "book_price": {
+      "type": "decimal"
+    },
+    "book_rating": {
+      "type": "decimal",
+      "max": 5,
+      "min": 0,
+      "default": 0
+    },
+    "desc": {
+      "type": "richtext"
+    },
+    "hasDiscount": {
+      "type": "boolean",
+      "default": false
+    },
+    "discount_value": {
+      "type": "integer",
+      "max": 100
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "books"
+    },
+    "bestSelling": {
+      "type": "boolean"
+    },
+    "maxStok": {
+      "type": "integer"
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review",
+      "mappedBy": "book"
+    }
+  }
+}

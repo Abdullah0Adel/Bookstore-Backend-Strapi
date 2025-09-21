@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "promo_codes",
+  "info": {
+    "singularName": "promo-code",
+    "pluralName": "promo-codes",
+    "displayName": "PromoCode",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "promo_code": {
+      "type": "string"
+    },
+    "discount_value": {
+      "type": "decimal"
+    },
+    "range": {
+      "type": "decimal"
+    },
+    "range_desc": {
+      "type": "string"
+    },
+    "users_permissions_users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "promo_codes"
+    }
+  }
+}
