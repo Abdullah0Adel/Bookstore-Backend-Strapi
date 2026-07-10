@@ -1,22 +1,16 @@
-import { parse } from 'pg-connection-string';
-
-export default ({ env }: any) => {
-  const config = parse(process.env.DATABASE_URL || '');
-  
-  return {
+module.exports = ({ env }) => ({
+  connection: {
+    client: 'postgres',
     connection: {
-      client: 'postgres',
-      connection: {
-        host: config.host,
-        port: config.port,
-        database: config.database,
-        user: config.user,
-        password: config.password,
-        ssl: {
-          rejectUnauthorized: false,
-        },
+      host: env('DATABASE_HOST'),
+      port: env.int('DATABASE_PORT', 5432),
+      database: env('DATABASE_NAME'),
+      user: env('DATABASE_USERNAME'),
+      password: env('DATABASE_PASSWORD'),
+      ssl: {
+        rejectUnauthorized: false
       },
-      debug: false,
     },
-  };
-};
+    pool: { min: 0, max: 10 }
+  },
+});
